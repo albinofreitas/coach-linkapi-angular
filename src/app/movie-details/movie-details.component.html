@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row" *ngIf="!loading && movie">
+        <div class="col">
+            <button class="btn btn-success mb-3" (click)="return()">
+                <i class="fa fa-arrow-left mr-2"></i>Return
+            </button>
+            <h2>{{ movie?.title }}</h2>
+            
+            <div class="row">
+                <div class="col-auto"> 
+                    <i class="fa fa-calendar mr-2"></i>{{ movie?.release_date | date }} 
+                </div>    
+                <div class="col-auto"> 
+                    <i class="fa fa-hourglass mr-2"></i>{{ (movie?.runtime | number) + ' minutes' }} 
+                </div>    
+                <div class="col-auto"> {{ movie?.vote_average }} </div>    
+            </div> 
+    
+            <div class="row my-3">
+                <div class="col-12">
+                    <p> {{ movie?.overview }} </p>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-4">
+                    <h3>Cast</h3>
+                    <ul>
+                        <li *ngFor="let actor of movie.actors"> {{ actor?.name }} </li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <h3>Genre</h3>
+                    <ul>
+                        <li *ngFor="let genre of movie.genres"> {{ genre?.name }} </li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <h3>Director</h3>
+                    <ul>
+                        <li> {{ movie?.director?.name }} </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 image-wrapper">
+            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-auto">
+        <h2>Discover</h2>
+    </div>
+    <div class="col-4 ml-auto">
+        <div class="form-group d-flex">
+            <input type="text" class="form-control" [(ngModel)]="searchTitle" (keyup.enter)="searchMovies()">
+            <button class="btn btn-success ml-3" (click)="searchMovies()">Search</button>
+        </div>
+    </div>
+</div>
+
+<div class="movies-wrapper" *ngIf="!loading && movies.length">
+    <app-movie-box *ngFor="let movie of movies" [movie]="movie"></app-movie-box>
+</div>
+
+<h2 class="my-5 text-center" *ngIf="!loading && !movies.length">Not Found!</h2>
+
+<app-loader [condition]="loading"></app-loader>
